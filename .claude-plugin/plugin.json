@@ -1,7 +1,7 @@
 {
   "name": "fire-your-seo-agency-tw",
   "description": "Fire your SEO agency — a Taiwan-localized Claude Code skill that audits and implements SEO·AEO·GEO·LLMO·TW (Bing/Yahoo 奇摩, zh-Hant-TW signals, Google Business Profile, Dcard/PTT/Mobile01) itself: crawler-eye audit, intent landing pages, llms.txt, structured data, a content engine (sub-blog, question backlog, publish gate, refresh), and a measurement loop.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": { "name": "lunkerchen" },
   "homepage": "https://github.com/lunkerchen/fire-your-seo-agency-tw",
   "license": "MIT",

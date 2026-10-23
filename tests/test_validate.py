@@ -344,6 +344,24 @@ class TestManifests(ValidatorTestCase):
         self.assertFails("manifest.marketplace")
 
 
+class TestReadmes(ValidatorTestCase):
+    def test_extra_language_readme_passes_when_linked(self) -> None:
+        self.fixture.write("README.ja.md", README_ZH_TW.replace("[English](./README.md)", "[English](./README.md) · [繁體中文](./README.zh-TW.md)"))
+        self.fixture.write("README.md", README_EN + "\n[日本語](./README.ja.md)\n")
+        self.fixture.write("README.zh-TW.md", README_ZH_TW + "\n[日本語](./README.ja.md)\n")
+        self.assertClean()
+
+    def test_extra_language_readme_must_be_in_every_switcher(self) -> None:
+        self.fixture.write("README.ja.md", README_ZH_TW + "\n[繁體中文](./README.zh-TW.md)\n")
+        self.assertFails("docs.readme")
+
+    def test_extra_language_readme_must_list_references(self) -> None:
+        self.fixture.write("README.ja.md", "# Demo\n\n[English](./README.md) · [繁體中文](./README.zh-TW.md)\n\n![p](./assets/social-preview.png)\n")
+        self.fixture.write("README.md", README_EN + "\n[日本語](./README.ja.md)\n")
+        self.fixture.write("README.zh-TW.md", README_ZH_TW + "\n[日本語](./README.ja.md)\n")
+        self.assertFails("docs.readme")
+
+
 class TestLinks(ValidatorTestCase):
     def test_broken_relative_link(self) -> None:
         self.fixture.write("README.md", README_EN + "\n[missing](./nope.md)\n")

@@ -4,6 +4,12 @@ Notable changes per release. `.claude-plugin/plugin.json` and
 `.claude-plugin/marketplace.json` must carry the same version, and
 `tools/validate.py` fails the build when they drift apart.
 
+## [0.1.1] - 2026-10-23
+
+- README in six languages: English, 繁體中文, 简体中文, 日本語, 한국어, Español, with a shared language switcher.
+- `tools/validate.py` now checks every `README.*.md`: preview embed, reference list, and links to every other README.
+- Social preview replaced with the Taiwan version.
+
 ## [0.1.0] - 2026-10-23
 
 First release of the Taiwan-localized fork.

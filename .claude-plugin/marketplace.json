@@ -7,7 +7,7 @@
       "name": "fire-your-seo-agency-tw",
       "source": "./",
       "description": "Fire your SEO agency — audits and implements SEO·AEO·GEO·LLMO·TW itself. Crawler-eye audit, intent landing pages, llms.txt, structured data, Taiwan local lane (Bing/Yahoo 奇摩, Google Business Profile, Dcard/PTT/Mobile01), content engine (sub-blog · backlog · publish gate · refresh), measurement loop.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     }
   ]
 }

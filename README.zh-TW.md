@@ -1,6 +1,6 @@
 # fire-your-seo-agency-tw
 
-**繁體中文** · [English](./README.md)
+[English](./README.md) · **繁體中文** · [简体中文](./README.zh-CN.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Español](./README.es.md)
 
 > 這是 [leopard627/fire-your-seo-agency](https://github.com/leopard627/fire-your-seo-agency)（MIT）的台灣在地化 fork。以台灣繁體中文為正本，並將 Naver 通道換成 TW 在地通道。
 

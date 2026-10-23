@@ -1,6 +1,6 @@
 # fire-your-seo-agency-tw
 
-[繁體中文](./README.zh-TW.md) · **English**
+**English** · [繁體中文](./README.zh-TW.md) · [简体中文](./README.zh-CN.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Español](./README.es.md)
 
 > Taiwan-localized fork of [leopard627/fire-your-seo-agency](https://github.com/leopard627/fire-your-seo-agency) (MIT). Traditional Chinese (Taiwan) is the canonical language; the Naver lane is replaced by a TW lane.
 

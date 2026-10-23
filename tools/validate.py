@@ -52,7 +52,6 @@ KNOWN_FRONTMATTER_KEYS = frozenset({
     "disable-model-invocation",
 })
 REPO_TOP_LEVEL = frozenset({"references", "assets", ".claude-plugin", "tools", "tests"})
-README_LINK_RE = re.compile(r"\]\(\.?/?README(?:\.zh-TW)?\.md\)")
 
 SKILL_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.\-]+)?$")
@@ -525,7 +524,8 @@ def check_links(repo: Repo, report: Report) -> None:
 
 
 def check_readmes(repo: Repo, report: Report) -> None:
-    names = ["README.md", "README.zh-TW.md"]
+    required = ["README.md", "README.zh-TW.md"]
+    names = required + sorted(p.name for p in repo.root.glob("README.*.md") if p.name not in required)
     problems = []
     texts = {}
     for name in names:
@@ -539,11 +539,11 @@ def check_readmes(repo: Repo, report: Report) -> None:
         texts[name] = body
         if SOCIAL_PREVIEW_PATH not in texts[name]:
             problems.append("%s does not embed %s" % (name, SOCIAL_PREVIEW_PATH))
-    if len(texts) == 2:
-        if not README_LINK_RE.search(texts["README.md"]):
-            problems.append("README.md has no link to README.zh-TW.md")
-        if not README_LINK_RE.search(texts["README.zh-TW.md"]):
-            problems.append("README.zh-TW.md has no link to README.md")
+    # every README links to every other one (the language switcher)
+    for name, text in texts.items():
+        for other in texts:
+            if other != name and "](./%s)" % other not in text:
+                problems.append("%s has no link to %s" % (name, other))
     source_dir = repo.root / REFERENCES_DIR
     if source_dir.is_dir():
         for path in sorted(source_dir.glob("*.md")):
@@ -553,7 +553,7 @@ def check_readmes(repo: Repo, report: Report) -> None:
     if problems:
         report.add("docs.readme", False, "; ".join(problems))
         return
-    report.add("docs.readme", True, "both READMEs embed the preview and list every reference")
+    report.add("docs.readme", True, "%d READMEs embed the preview, link each other and list every reference" % len(texts))
 
 
 def check_assets(repo: Repo, report: Report) -> None:
