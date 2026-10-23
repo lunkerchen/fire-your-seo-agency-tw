@@ -1,9 +1,22 @@
 # Changelog
 
-Notable changes per release. Versions match the plugin tags
-(`fire-your-seo-agency--vX.Y.Z`); `.claude-plugin/plugin.json` and
+Notable changes per release. `.claude-plugin/plugin.json` and
 `.claude-plugin/marketplace.json` must carry the same version, and
 `tools/validate.py` fails the build when they drift apart.
+
+## [0.1.0] - 2026-10-23
+
+First release of the Taiwan-localized fork.
+
+- Forked from leopard627/fire-your-seo-agency v1.2.1 (MIT)
+- Traditional Chinese (Taiwan) is now the canonical language; `references/en/` is kept as the English mirror
+- The NEO (Naver) lane is replaced by the TW lane (Bing Webmaster Tools and Yahoo 奇摩, zh-Hant-TW language signals, Google Business Profile, Dcard / PTT / Mobile01 citation surfaces)
+- Renamed to `fire-your-seo-agency-tw`; the Korean README is replaced by `README.zh-TW.md`
+
+## Upstream history (leopard627/fire-your-seo-agency)
+
+The entries below are the upstream project's history, kept for reference. Their version
+numbers belong to the upstream project and its `fire-your-seo-agency--vX.Y.Z` tags.
 
 ## 1.2.1 — 2026-09-25
 

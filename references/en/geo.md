@@ -14,11 +14,11 @@ crawlers ② read llms.txt ③ reward the *original source* much more strongly.
 > One-sentence description (state what you are the primary source of)
 
 ## Key pages
-- [Earnings calendar](https://example.com/earnings): earnings release schedule for listed companies
+- [Earnings calendar](https://example.com/earnings): earnings and investor-conference schedule for Taiwan-listed companies
 - [Stock data](https://example.com/stocks): filings-based financials & valuation
 
 ## Data policy
-- Source: computed in-house from official filings, refreshed daily
+- Source: computed in-house from official filings (MOPS), refreshed daily
 - Cite as: example.com
 ```
 
@@ -64,7 +64,8 @@ The roster changes — recheck each vendor's crawler docs quarterly.
 
 - [ ] **Check your Bing index**: ChatGPT search relies on the Bing index on top of its own
       crawler. If you're not in Bing Webmaster Tools, start with section 0 of
-      `references/aeo.md` (or `references/en/aeo.md`)
+      `references/aeo.md` (or `references/en/aeo.md`). Yahoo search results in Taiwan are
+      also served by Bing; see section 1 of `references/tw-local.md`
 
 ## 3. Becoming the primary source — the heart of GEO
 
@@ -76,11 +77,13 @@ else's data loses the citation to the original.
 - [ ] Name that number and always serve it from the same page (stable URL = citation address)
 - [ ] Paragraph-level citability: when each paragraph carries
       [subject + number + as-of date + methodology], it gets cited as a unit — measured:
-      both Naver AI Briefing and Perplexity clip at exactly this granularity
+      Perplexity clips at exactly this granularity; verify with real searches whether
+      other AI search products do the same
 
 ## 4. Verification
 
-- Ask real questions in Perplexity and ChatGPT (search mode) and check whether your domain
-  appears in the source list
+- Ask real questions in Perplexity, ChatGPT (search mode), and Gemini and check whether your
+  domain appears in the source list; also check in a real Taiwan search whether Google AI
+  Overviews and AI Mode appear and cite you — never assume these features are available
 - Not appearing? Check in order: llms.txt exists → crawlers allowed → that page is SSR →
   a competing original source exists

@@ -7,7 +7,7 @@ timescales), but once it lands, it's a moat no agency can imitate.
 
 ## 1. Entity consistency
 
-- [ ] Write the service name **identically everywhere** (native/English spellings, even
+- [ ] Write the service name **identically everywhere** (Chinese/English spellings, even
       spacing). Divergent spellings split the entity inside the model
 - [ ] Connect every official surface via Organization JSON-LD `sameAs`: wiki-type pages,
       app stores, GitHub, social accounts, YouTube — a declaration that "these names are
@@ -21,7 +21,7 @@ timescales), but once it lands, it's a moat no agency can imitate.
 Models don't learn the whole web evenly — they concentrate on **high-crawl-value surfaces**.
 Leave accurate statements there:
 
-- [ ] Wiki-type pages (Wikipedia, local wikis): **factual register, not promotional** —
+- [ ] Wiki-type pages (Wikipedia and similar): **factual register, not promotional** —
       puffery gets edits rejected, and the model learns you as an ad
 - [ ] GitHub: a public repo's README is a strong training surface (this repository is
       itself an example)

@@ -7,13 +7,15 @@ answer**. Being extraction-friendly is everything.
 ## 0. Bing registration — the forgotten half
 
 Most sites watch GSC and skip Bing entirely, but **Copilot pulls answers from the Bing
-index, and ChatGPT search leans heavily on it too.** No Bing registration = throwing away
-half of AEO and GEO.
+index, and ChatGPT search leans heavily on it too.** In Taiwan, Yahoo search results are
+also served by Bing (verify with the side-by-side check in `references/tw-local.md` section 1). No Bing registration = throwing
+away half of AEO and GEO, plus your Yahoo exposure.
 
 - [ ] Register at [Bing Webmaster Tools](https://www.bing.com/webmasters) — supports
       one-click import from GSC (brings over verification and sitemaps). A 10-minute job
 - [ ] Confirm sitemap submission + wire up IndexNow (Bing consumes IndexNow directly)
-- [ ] Verify indexing with `site:yourdomain` on Bing itself
+- [ ] Verify indexing with `site:yourdomain` on Bing itself; Yahoo results come from Bing,
+      so spot-check there too. See section 1 of `references/tw-local.md`
 
 ## Principle: one question = one page
 
@@ -39,7 +41,7 @@ half of AEO and GEO.
       risks a spam verdict
 - [ ] Only answers settled by data. No prediction or recommendation Q&A (especially in
       regulated industries)
-- ℹ️ **Expectation management**: since August 2023, Google restricts FAQ rich results
+- NOTE — **Expectation management**: since August 2023, Google restricts FAQ rich results
       (the collapsible Q&A UI in search) to authoritative government/health sites, and
       HowTo rich results were removed entirely. You still attach FAQPage LD — not for
       rich results but for **content understanding and answer extraction**. Don't rip it
@@ -61,6 +63,8 @@ operator beats the anonymous one:
 ## Verification
 
 - After deploy, actually search the target questions on Google and Bing and record
-  whether the AI answer cites you.
+  whether the AI answer cites you. Do this in a real Taiwan search environment
+  (Traditional Chinese, Taiwan region) and check whether Google AI Overviews, AI Mode,
+  and Copilot appear at all; never assume a feature is available.
 - Not cited? Check in order: ① is the direct-answer sentence above the fold
   ② data freshness vs. competing pages ③ page trust (domain age, structured data).

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Repository checks for the fire-your-seo-agency Claude Code plugin.
+"""Repository checks for the fire-your-seo-agency-tw Claude Code plugin.
 
 Standard library only. Guards the parts of a documentation-only plugin repo that
 rot silently: the SKILL.md frontmatter contract, manifest and version
-consistency, relative links and anchors, Korean/English reference parity,
+consistency, relative links and anchors, Traditional Chinese/English reference parity,
 asset budgets, license metadata and accidentally committed secrets.
 
 Usage:
@@ -52,7 +52,7 @@ KNOWN_FRONTMATTER_KEYS = frozenset({
     "disable-model-invocation",
 })
 REPO_TOP_LEVEL = frozenset({"references", "assets", ".claude-plugin", "tools", "tests"})
-README_LINK_RE = re.compile(r"\]\(\.?/?README(?:\.ko)?\.md\)")
+README_LINK_RE = re.compile(r"\]\(\.?/?README(?:\.zh-TW)?\.md\)")
 
 SKILL_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.\-]+)?$")
@@ -411,7 +411,7 @@ def check_references(repo: Repo, report: Report) -> None:
     for name in sorted(set(names) - set(mirrored)):
         problems.append("%s/%s has no English mirror" % (REFERENCES_DIR, name))
     for name in sorted(set(mirrored) - set(names)):
-        problems.append("%s/%s has no canonical Korean source" % (MIRROR_DIR, name))
+        problems.append("%s/%s has no canonical Traditional Chinese source" % (MIRROR_DIR, name))
     for name in sorted(set(names) & set(mirrored)):
         left = reference_stats(source_dir / name)
         right = reference_stats(mirror_dir / name)
@@ -420,7 +420,7 @@ def check_references(repo: Repo, report: Report) -> None:
             continue
         for metric in ("h1", "h2", "h3", "fences", "table_rows", "checkboxes"):
             if left[metric] != right[metric]:
-                problems.append("%s: %s %d (ko) vs %d (en)" % (name, metric, left[metric], right[metric]))
+                problems.append("%s: %s %d (zh-TW) vs %d (en)" % (name, metric, left[metric], right[metric]))
                 break
         if left["numbers"] != right["numbers"]:
             problems.append(
@@ -525,7 +525,7 @@ def check_links(repo: Repo, report: Report) -> None:
 
 
 def check_readmes(repo: Repo, report: Report) -> None:
-    names = ["README.md", "README.ko.md"]
+    names = ["README.md", "README.zh-TW.md"]
     problems = []
     texts = {}
     for name in names:
@@ -541,9 +541,9 @@ def check_readmes(repo: Repo, report: Report) -> None:
             problems.append("%s does not embed %s" % (name, SOCIAL_PREVIEW_PATH))
     if len(texts) == 2:
         if not README_LINK_RE.search(texts["README.md"]):
-            problems.append("README.md has no link to README.ko.md")
-        if not README_LINK_RE.search(texts["README.ko.md"]):
-            problems.append("README.ko.md has no link to README.md")
+            problems.append("README.md has no link to README.zh-TW.md")
+        if not README_LINK_RE.search(texts["README.zh-TW.md"]):
+            problems.append("README.zh-TW.md has no link to README.md")
     source_dir = repo.root / REFERENCES_DIR
     if source_dir.is_dir():
         for path in sorted(source_dir.glob("*.md")):
@@ -673,7 +673,7 @@ def validate(root: Path) -> Report:
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description="Validate a fire-your-seo-agency style plugin repository.")
+    parser = argparse.ArgumentParser(description="Validate a fire-your-seo-agency-tw style plugin repository.")
     parser.add_argument("--root", default=str(Path(__file__).resolve().parent.parent))
     parser.add_argument("--json", dest="as_json", action="store_true", help="print the report as JSON")
     parser.add_argument("--strict", action="store_true", help="treat warnings as failures")

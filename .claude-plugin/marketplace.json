@@ -1,13 +1,13 @@
 {
-  "name": "fire-your-seo-agency",
-  "description": "Fire your SEO agency — a Claude Code skill that audits and implements SEO·AEO·GEO·LLMO·NEO(Naver) itself.",
-  "owner": { "name": "leopard627" },
+  "name": "fire-your-seo-agency-tw",
+  "description": "Fire your SEO agency — a Taiwan-localized Claude Code skill that audits and implements SEO·AEO·GEO·LLMO·TW itself.",
+  "owner": { "name": "lunkerchen" },
   "plugins": [
     {
-      "name": "fire-your-seo-agency",
+      "name": "fire-your-seo-agency-tw",
       "source": "./",
-      "description": "Fire your SEO agency — audits and implements SEO·AEO·GEO·LLMO·NEO(Naver) itself. Crawler-eye audit, intent landing pages, llms.txt, structured data, Naver AI Briefing, content engine (sub-blog · backlog · publish gate · refresh), measurement loop.",
-      "version": "1.2.1"
+      "description": "Fire your SEO agency — audits and implements SEO·AEO·GEO·LLMO·TW itself. Crawler-eye audit, intent landing pages, llms.txt, structured data, Taiwan local lane (Bing/Yahoo 奇摩, Google Business Profile, Dcard/PTT/Mobile01), content engine (sub-blog · backlog · publish gate · refresh), measurement loop.",
+      "version": "0.1.0"
     }
   ]
 }

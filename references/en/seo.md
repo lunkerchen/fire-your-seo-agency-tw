@@ -11,7 +11,7 @@ without JavaScript.**
       via SSR and gate the rest.
 - [ ] Is the body text present in `curl -sL <url>` output? If the site is SPA/CSR,
       adopting SSR/SSG/prerendering is priority #1 — everything below is meaningless without it.
-- [ ] ⚠️ **CSR bailout trap**: even in SSR frameworks, certain hooks/APIs can silently drop
+- [ ] WARN — **CSR bailout trap**: even in SSR frameworks, certain hooks/APIs can silently drop
       a whole page to client rendering (e.g. Next.js `useSearchParams` without Suspense).
       Re-check representative pages with curl after every deploy — a sudden drop in body
       character count is an incident.
@@ -28,8 +28,8 @@ without JavaScript.**
 
 ## 3. Meta
 
-- [ ] Title 50–60 chars: key term first, brand last
-- [ ] Description 150–160 chars: a sentence that gives a reason to click (don't put
+- [ ] Title by display width (50–60 is the Latin-character guide; CJK titles must be much shorter, check for truncation in real results): key term first, brand last
+- [ ] Description by display width (150–160 Latin chars as a guide; much shorter for CJK): a sentence that gives a reason to click (don't put
       disclaimers/warnings in the description — they only kill CTR)
 - [ ] Unique per page — hundreds of pages sharing one templated description gets flagged
       as duplication
@@ -49,7 +49,7 @@ without JavaScript.**
 - [ ] canonical: parameter variants and duplicate paths point to one canonical URL
 - [ ] Multilingual? hreflang must cross-reference (one-sided tags are void)
 - [ ] Missing pages return 404, not 200 — soft 404s burn crawl budget
-- [ ] ⚠️ **Baked-404 trap**: in ISR/CDN cache layers, a transient failure's 404 can get
+- [ ] WARN — **Baked-404 trap**: in ISR/CDN cache layers, a transient failure's 404 can get
       baked for hours. On data-fetch failure, throw (retry) instead of returning 404 —
       "doesn't exist" and "couldn't fetch" are different things
 - [ ] Redirect chains: 1 hop max
@@ -63,7 +63,10 @@ without JavaScript.**
 
 ## 7. Index acceleration
 
-- [ ] IndexNow: ping new/updated pages at publish time (consumed by Bing, Naver, Yandex)
+- [ ] IndexNow: ping new/updated pages at publish time (consumed by Bing, Yandex, and
+      others). In Taiwan, Yahoo search results are served by Bing (verify with the side-by-side check in
+      `references/tw-local.md` section 1), so Bing Webmaster Tools plus IndexNow covers both Bing and Yahoo; see
+      section 1 of `references/tw-local.md`
 - [ ] Google doesn't support IndexNow — win with sitemap `lastmod` accuracy instead
 - [ ] Publishing at volume? Build the ping into the publishing pipeline — manual pings
       always stop happening

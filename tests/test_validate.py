@@ -55,7 +55,7 @@ echo hello
 
 README_EN = """# Demo
 
-[한국어](./README.ko.md)
+[繁體中文](./README.zh-TW.md)
 
 ![preview](./assets/social-preview.png)
 
@@ -64,13 +64,13 @@ README_EN = """# Demo
 - seo.md
 """
 
-README_KO = """# Demo
+README_ZH_TW = """# Demo
 
 [English](./README.md)
 
 ![preview](./assets/social-preview.png)
 
-## 구조
+## 結構
 
 - seo.md
 """
@@ -133,7 +133,7 @@ class Fixture:
         self.write("LICENSE", "MIT License\n\nCopyright (c) 2026 tester\n")
         self.write("CHANGELOG.md", "# Changelog\n\n## 1.2.0\n\n- thing\n")
         self.write("README.md", README_EN)
-        self.write("README.ko.md", README_KO)
+        self.write("README.zh-TW.md", README_ZH_TW)
         self.write("references/seo.md", REFERENCE)
         self.write("references/en/seo.md", REFERENCE)
         self.write_bytes(PREVIEW, png_bytes())

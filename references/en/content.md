@@ -14,7 +14,7 @@ Content cuts across all five lanes. What content does for each:
 | AEO | The supply line for "one question = one page" |
 | GEO | Paragraph-level citation material (subject + number + as-of date + method) |
 | LLMO | The record of how you built it = a surface that survives into the training corpus |
-| NEO | The inside (Naver blog) half of the two-track strategy |
+| TW | The external-platform half (Vocus, PIXNET, etc.) of the "own domain + external platform" two-track strategy |
 
 ## 0. Audit — content status
 
@@ -41,9 +41,9 @@ Scorecard evidence example: "34 posts, 0 mapped to a question, 0 published in 90
 
 | Option | Pros | Cons | Verdict |
 |---|---|---|---|
-| **Subdirectory** `example.com/blog` | Domain authority consolidates; sitemap, llms.txt and LD managed in one place | Deploys are coupled to the main app | ✅ Default |
+| **Subdirectory** `example.com/blog` | Domain authority consolidates; sitemap, llms.txt and LD managed in one place | Deploys are coupled to the main app | PASS: default |
 | **Subdomain** `blog.example.com` | Separate stack and deploys | In practice treated close to a separate site; authority splits | Only when the main app cannot SSR |
-| **External platform** (Naver Blog, Brunch, Medium, velog) | Platform-native reach and readers | Your ledger of facts lives on someone else's domain; no canonical control; policy risk | Satellite only (section 7) |
+| **External platform** (Vocus, PIXNET, Medium) | Platform-native reach and readers | Your ledger of facts lives on someone else's domain; no canonical control; policy risk | Satellite only (section 7) |
 
 Principle: **the ledger of facts (data and question pages) lives on your domain; external
 platforms are summary-plus-link satellites.**
@@ -52,7 +52,7 @@ Technical requirements for the sub-blog (condensed from `references/seo.md`):
 
 - [ ] SSR/SSG — Markdown → static HTML is the safest path. If you use a CMS, verify the
       rendered output with curl
-- [ ] Unique title (50–60 chars), description (150–160 chars) and OG image per post
+- [ ] Unique title, description (sized by display width, see `references/seo.md`) and OG image per post
 - [ ] `Article` (or `BlogPosting`) JSON-LD: headline · datePublished · dateModified · author ·
       publisher referencing the global Organization `@id` (never re-declared per page)
 - [ ] `BreadcrumbList` LD plus visible breadcrumbs
@@ -61,7 +61,7 @@ Technical requirements for the sub-blog (condensed from `references/seo.md`):
 - [ ] Tag, category and pagination pages: thin listings with fewer than 3 posts get noindex;
       only listings you intend to grow into hubs get indexed. Left alone, hundreds of thin pages
       burn crawl budget
-- [ ] Post URLs are slug-only, no dates (`/blog/samsung-earnings-date`) — a refreshed post
+- [ ] Post URLs are slug-only, no dates (`/blog/example-earnings-call`) — a refreshed post
       never carries a stale URL
 
 ## 2. Content model — metadata for one post
@@ -71,23 +71,23 @@ JSON-LD from this single source** and visible-text/LD mismatches become impossib
 
 ```yaml
 ---
-title: "When is Samsung Electronics' earnings date"   # identical to h1
-slug: samsung-earnings-date
-question: "samsung earnings date"                      # the exact phrase people type
-answer: "Samsung Electronics' next earnings release is October 30, 2026 (tentative)."  # first-paragraph direct answer, ~40 chars in Korean / one short sentence
-description: "…"                                       # 150–160 chars, a reason to click
+title: "When is Example Electronics' earnings call"                   # identical to h1
+slug: example-earnings-call
+question: "when is the Example Electronics earnings call"           # the exact phrase people type
+answer: "Example Electronics' next earnings call is on YYYY-MM-DD (tentative; per the MOPS announcement)."  # first-paragraph direct answer, ~40 characters / one short sentence
+description: "…"                                       # no truncation in results, a reason to click
 type: question        # question | data | glossary | buildlog | comparison
 datePublished: 2026-09-21
 dateModified: 2026-09-21                               # bump only on real content changes
 data_asof: 2026-09-20                                  # as-of date for the numbers in the body
 author: { name: "…", url: "/about" }
 sources:
-  - { name: "DART (Korean regulatory filings)", url: "https://dart.fss.or.kr/…" }
+  - { name: "Market Observation Post System (MOPS)", url: "https://mops.twse.com.tw/" }
 faq:
-  - { q: "Is the release during market hours or after close?", a: "…" }
-related: [samsung-dividend-date, earnings-calendar]
+  - { q: "Is the earnings call held during market hours or after close?", a: "…" }
+related: [example-dividend-date, earnings-calendar]
 status: published     # draft | review | published | refresh-needed | merged
-canonical: https://example.com/blog/samsung-earnings-date
+canonical: https://example.com/blog/example-earnings-call
 ---
 ```
 
@@ -103,18 +103,18 @@ canonical: https://example.com/blog/samsung-earnings-date
 
 | Type | Shape | Which lane feeds on it |
 |---|---|---|
-| **Question page** | One "when / how much / how" question, direct answer + evidence table | AEO·NEO |
+| **Question page** | One "when / how much / how" question, direct answer + evidence table | AEO·TW |
 | **Data page** | Numbers you compute yourself, stable URL, stated refresh cadence | GEO (the body of primary-source strategy) |
 | **Glossary / definition** | One-sentence definition + comparison table + example | AEO (the #1 extractable shape) |
 | **Build log / changelog** | What you built, why, how — with measured numbers | LLMO (training surface) + the "Experience" in E-E-A-T |
 | **Comparison page** | Table-first, dated, no home-team bias | AEO·GEO |
 
 What you don't make:
-- ❌ Rehashed news, summaries of other people's data: the original source takes the citation
+- No: Rehashed news, summaries of other people's data: the original source takes the citation
       (`references/geo.md` §3)
-- ❌ Keyword-variant page farms ("best X", "best X 2026", "X ranking"…): copies of the same
+- No: Keyword-variant page farms ("best X", "best X 2026", "X ranking"…): copies of the same
       answer split rankings among themselves, and at scale they fall under "scaled content abuse"
-- ❌ Posts with no answer: a post that concludes "it depends" gets cited by no engine
+- No: Posts with no answer: a post that concludes "it depends" gets cited by no engine
 
 ## 4. Pipeline
 
@@ -123,18 +123,18 @@ What you don't make:
 A content calendar is not "this month's topics" — it's **a queue of questions to answer**.
 Sources, in order:
 
-1. Top queries in GSC and Naver Search Advisor that **have no dedicated page** (`references/measure.md` §4)
+1. Top queries in GSC and Bing Webmaster Tools that **have no dedicated page** (`references/measure.md` §4)
 2. Queries with impressions but average position 5–15 — already candidates, weak on direct
    answer or tables
 3. Site search, support tickets, customer questions
-4. Autocomplete and related searches (both Naver and Google)
+4. Google autocomplete and related searches, plus Dcard, PTT and Mobile01 thread titles (as a source of how people really phrase questions)
 
 Manage it in `content/backlog.md`:
 
 ```markdown
 | Question | Evidence | Type | Status | URL |
 |---|---|---|---|---|
-| samsung dividend record date | GSC 1,240 impressions · pos 11 | question | draft | |
+| Example Electronics ex-dividend date | GSC 1,240 impressions · pos 11 | question | draft | |
 | how to calculate PER | autocomplete · 3 support tickets | glossary | backlog | |
 ```
 
@@ -161,7 +161,7 @@ Apply the sentence rules of `references/aeo.md` and `geo.md` at the post level:
 - [ ] Self-contained paragraphs: each carries its own subject, number and as-of date
       (no "the figure mentioned above")
 - [ ] Think in tables first — three or more numbers means a table, not prose
-- [ ] H2s are the sub-questions verbatim (`## Is the release during market hours or after close`)
+- [ ] H2s are the sub-questions verbatim (`## Is the earnings call held during market hours or after close`)
 - [ ] Length is whatever the answer needs. "2,000+ words" rules breed filler, and filler buries
       the direct answer
 - [ ] Every number gets a source and an as-of date. If you computed it, one line on the method
@@ -182,10 +182,10 @@ Apply the sentence rules of `references/aeo.md` and `geo.md` at the post level:
 - [ ] Internal links: 1 up (hub) + 2 sideways (related) minimum, zero broken links
 - [ ] Image alt, width/height, total weight checked
 - [ ] In the sitemap with accurate lastmod (verified with curl after deploy)
-- [ ] IndexNow ping (consumed by Bing and Naver) — built into the publish pipeline
+- [ ] IndexNow ping (consumed by Bing and Yandex; Yahoo Taiwan search results come from Bing, so it benefits too) — built into the publish pipeline
 - [ ] If it's a data page or hub-grade: add an entry to `llms.txt`
 - [ ] RSS updated
-- [ ] If Naver is a target: request crawling in Search Advisor
+- [ ] Submit the URL in Bing Webmaster Tools, and request indexing via URL Inspection in Google Search Console
 
 ### 4-5. After publishing
 
@@ -241,14 +241,15 @@ the original first, a copy gets treated as the original.
 
 | Surface | What goes there | Don't |
 |---|---|---|
-| Naver Blog (inside) | Summary + perspective + 1–2 links to your data pages | Paste the whole body; link-spam (`references/neo-naver.md` §3–4) |
-| Medium · Brunch · velog | Full text if canonical can be set, otherwise summary + link | Full copies with no canonical |
-| Threads · X · LinkedIn | One key number + link (this is both an LLMO surface and a traffic source) | The same phrasing on every post |
+| Vocus · PIXNET (external platform) | Summary + perspective + 1–2 links to your data pages | Paste the whole body; link-spam (`references/tw-local.md` §5–6) |
+| Medium | Full text if canonical can be set, otherwise summary + link | Full copies with no canonical |
+| LINE Official Account · Threads · X · LinkedIn | One key number + link (this is both an LLMO surface and a traffic source) | The same phrasing on every post |
 | GitHub README · build log | How you built it, measured — factual register | Promotional tone |
 
-- [ ] **Check whether the editor renders Markdown first**: the Naver Blog editor does not. Paste a
-      Markdown draft and `#`, `**` and `|` show up as literal characters — rebuild headings, bold
-      and tables with the editor's own tools, then check the published post on mobile for leaked symbols
+- [ ] **Check whether the platform editor supports Markdown first** (e.g. Vocus, PIXNET): if it
+      doesn't, a pasted Markdown draft shows `#`, `**` and `|` as literal characters — rebuild
+      headings, bold and tables with the editor's own tools, then check the published post on
+      mobile for leaked symbols
 - [ ] Log distribution timing in the inventory — this is where you learn which channel actually drives traffic
 
 ## 8. Measurement — "N posts a month" is not a metric
@@ -257,7 +258,7 @@ An agency report's "12 posts published this month" is output, not outcome. This 
 
 - **Share of posts that get seen or cited**: of published posts, how many have 28-day impressions > 0 / are cited by AI
 - Per-post 28-day impressions, clicks and average position (inventory refreshed monthly)
-- AI-citation O/X on the 5–10 target questions (Perplexity, ChatGPT search, Naver AI Briefing)
+- AI-citation O/X on the 5–10 target questions (ChatGPT search, Perplexity, Gemini, Google AI Overviews)
 - Backlog burn rate vs. inflow — an empty backlog means it's time to re-read the query data
 
 Signal → next action:

@@ -10,9 +10,12 @@ If you don't capture the before state, you can never prove the effect:
 
 - Google Search Console: last 28 days of impressions, clicks, average position
   (by page group)
-- Naver Search Advisor: content impressions/clicks, top queries list
-- AI citations: actually ask 5–10 target questions in Perplexity, ChatGPT, and Naver
-  AI Briefing, and record cited-or-not as O/X
+- Bing Webmaster Tools: search performance (impressions/clicks) and the top queries list.
+  Yahoo search results are served by Bing (verify with the side-by-side check in `references/tw-local.md` section 1); but Bing Webmaster Tools
+  performance numbers count Bing only, so confirm Yahoo traffic separately in your analytics referrers
+- AI citations: actually ask 5–10 target questions in Perplexity, ChatGPT search, and Gemini,
+  check in a real Taiwan search whether Google AI Overviews and AI Mode appear, and record
+  cited-or-not as O/X (never assume a feature is available)
 - Index counts: `site:domain` result count + GSC indexed pages (check Bing with
   `site:` too)
 - **AI crawler visits**: the trend of GPTBot, PerplexityBot, ClaudeBot, etc. in your
@@ -24,6 +27,9 @@ grep -iE 'GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|Claude-User|PerplexityBot'
   | awk '{print $1}' | wc -l
 # No log access? Substitute your host's bot-traffic breakdown (Cloudflare/Vercel etc.)
 ```
+
+For local-facing measurement (Google Business Profile, forum citations, etc.), see
+section 7 of `references/tw-local.md`.
 
 ## 2. The re-measurement date is part of the work
 
@@ -49,7 +55,7 @@ is the safe default.
   Impressions up but CTR flat = your next task is meta
 - **Weekend dips are normal**: weekday-natured topics (business, finance) go quiet on
   weekends. That pattern is evidence of real demand, not a problem
-- **The query list is your roadmap**: Search Advisor / GSC top queries are the list of
+- **The query list is your roadmap**: Bing Webmaster Tools / GSC top queries are the list of
   questions people actually type. A top query with no dedicated landing page = the next
   page to build
 
