@@ -36,7 +36,7 @@ away half of AEO and GEO, plus your Yahoo exposure.
 
 ## FAQ block
 
-- [ ] 3–5 real search questions as an FAQ section at the bottom of the page
+- [ ] Real search questions as an FAQ section at the bottom of the page; the number follows the actual questions
 - [ ] Attach FAQPage JSON-LD, **character-identical to the visible text** — divergence
       risks a spam verdict
 - [ ] Only answers settled by data. No prediction or recommendation Q&A (especially in
@@ -44,8 +44,16 @@ away half of AEO and GEO, plus your Yahoo exposure.
 - NOTE — **Expectation management**: since August 2023, Google restricts FAQ rich results
       (the collapsible Q&A UI in search) to authoritative government/health sites, and
       HowTo rich results were removed entirely. You still attach FAQPage LD — not for
-      rich results but for **content understanding and answer extraction**. Don't rip it
-      out because "the stars don't show."
+      rich results but to keep the content and the markup consistent and machine-readable.
+      Don't rip it out because "the stars don't show."
+- NOTE — **Don't expect an FAQ to earn citations by itself**: a large observational study
+      (arXiv 2610.15033; two markets, 90 days, 158,099 answers, 468,037 citations; single
+      study) found no significant association between FAQ blocks or structured data and how
+      often pages were cited within one site. Cross-site comparisons looked positive,
+      mostly because the sites differ. So an FAQ does not mean a citation gain.
+      The main value of an FAQ is **answering real questions**. What was associated with
+      more citations is paragraphs that answer the question directly (observational; see
+      section 4 of `references/en/geo.md`).
 
 ## Trust signals (E-E-A-T)
 
@@ -67,4 +75,6 @@ operator beats the anonymous one:
   (Traditional Chinese, Taiwan region) and check whether Google AI Overviews, AI Mode,
   and Copilot appear at all; never assume a feature is available.
 - Not cited? Check in order: ① is the direct-answer sentence above the fold
-  ② data freshness vs. competing pages ③ page trust (domain age, structured data).
+  ② data freshness vs. competing pages ③ page trust (domain age, a verifiable operator).
+  Structured data helps machines read the page; it does not guarantee more citations
+  (arXiv 2610.15033, single study).

@@ -80,7 +80,77 @@ else's data loses the citation to the original.
       Perplexity clips at exactly this granularity; verify with real searches whether
       other AI search products do the same
 
-## 4. Verification
+## 4. Sub-query alignment — make paragraphs answer the question directly
+
+arXiv 2610.15033 (single study, observational association, not causal): within one site,
+paragraphs that answer the question directly are associated with more citations (per 1 SD better match: ChatGPT
++9.5%, Gemini +7.8%, Perplexity +4.8%). Title matching the question is positive only on
+Gemini (+16.8%) and Perplexity (+4.7%); on ChatGPT it is −0.2%. FAQ blocks, structured
+data, summary boxes, and page speed showed no significant association between pages of
+the same site. Also, which pages
+the engine's own rewritten sub-queries retrieve explains far more variance than page
+attributes do (ChatGPT, comparing pages within the same site: 32% vs. 2.8%; the second
+dataset gave 30% vs. 10.0%, a difference that was not significant), and those sub-queries rarely overlap with Google or Bing
+results. So watching Google rankings alone does not show what the AI retrieves.
+
+- [ ] List the questions customers ask (GSC/Bing query lists, support logs, the question
+      backlog in section 4-1 of `references/en/content.md`)
+- [ ] For each question, list the sub-queries an AI may split it into (for example, "best X"
+      may become "X price", "X reviews", "who X suits")
+- [ ] Make the paragraph **answer each sub-query directly**: put the answer in the first
+      paragraph. Use the words of the question in the title and H2 too, but the title
+      association differs by engine, so do not only rewrite titles
+- [ ] One sub-query = one clear paragraph or page; do not bury it in one long block
+- [ ] Verify with section 8: ask the AI the same thing in several phrasings and check
+      whether your page is retrieved
+
+## 5. Brand presence on third-party sources
+
+arXiv 2610.15033 (single study) measured the models' existing brand knowledge: models
+name brands they already know and prefer familiar sites. It did not test the effect of
+adding exposure, so "the more you are mentioned, the more the AI names you" is not
+guaranteed. A well-written own site is not enough; the practice is to organize the real
+facts about you on third-party sources and track whether the AI mentions you.
+
+- [ ] Inventory third-party sources: Google Business Profile, trade media, review and
+      directory sites, forums such as Dcard and PTT (see `references/en/tw-local.md`)
+- [ ] Keep the brand name, address, and service description consistent everywhere
+- [ ] Organize real facts on third-party sources (real coverage, customer reviews, partner mentions); do not buy or fake them
+- [ ] This is long-term work. Track "does the AI answer name you" with the method in section 8
+
+## 6. Write image content as text
+
+arXiv 2511.04080 (single study): adding a text version can raise the chance that text
+retrieval and extraction pipelines pick up the information in an image. In the study the
+figures are relative changes in G-Eval subjective visibility (text-only −1.01%,
+multimodal +1.12%), not citation rate, so do not promise a gain. The paper also admits it
+did not compare against VLMs that read images directly.
+
+- [ ] Write alt text for every informative image: describe what it shows and the key
+      point, not just keywords
+- [ ] For charts, price tables, and flow diagrams, write the numbers and the conclusion
+      as text in a caption or in the body
+- [ ] Text inside an image (price, spec, date) must also appear in the page text
+- [ ] Decorative images get empty alt; do not stuff them
+
+## 7. Do not do this (white-hat line)
+
+C-SEO Bench (arXiv 2506.11097, single study) found that conversational-SEO rewrite tricks
+did not show statistically significant positive ranking gains in most tested settings (some
+settings ranked significantly worse), that getting the page found and ranked near the front works better than rewriting the text (the paper moved documents earlier in the LLM context; it did not test Google rankings, so do not cite it as evidence for Google SEO), and that gains shrink
+once competitors adopt the same tricks (zero-sum). Another study (arXiv 2402.11782) found
+LLMs mainly weigh relevance and largely ignore style features such as scientific
+citations or a neutral tone, so do not rewrite your voice just to "sound authoritative."
+
+These count as manipulation. Do not do them (see arXiv 2606.28356 SafeGEO, 2404.07981,
+2504.05804):
+
+- Hidden prompt injection: invisible text or instructions to the AI telling it to recommend you
+- Strategic text that manipulates ranking: sentences written only to push the AI's ordering
+- Overstating a flawed product: presenting a product with known defects as the best
+- Rewriting into an unnatural chat-style voice just to please the AI
+
+## 8. Verification
 
 - Ask real questions in Perplexity, ChatGPT (search mode), and Gemini and check whether your
   domain appears in the source list; also check in a real Taiwan search whether Google AI

@@ -149,9 +149,13 @@ Fill five lines before writing. If you can't, the post isn't ready to be written
 Question:       (the exact phrase people type)
 Direct answer:  (one sentence, with the number/date)
 Evidence:       (data for one table + as-of date + source URL)
-Sub-questions:  (the 3 that become the FAQ)
+Sub-queries:    (what customers really ask and an AI may split out; each maps to the paragraph that answers it)
 Internal links: (1 hub + 2 related posts/data pages)
 ```
+
+Pick topics by real demand, and set the FAQ size by the actual questions; do not pad to a
+fixed count. In the same-site comparison in arXiv 2610.15033, FAQ and schema showed no
+significant association with citation (single study); this does not establish that adding FAQ or schema increases citations.
 
 ### 4-3. Writing rules — machine readability
 

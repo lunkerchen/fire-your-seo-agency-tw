@@ -39,6 +39,39 @@ section 7 of `references/tw-local.md`.
   reminder. If this skill did the work, stating the re-measurement date in the report
   is part of the definition of done
 
+## 2-1. Same-domain control group — separate platform growth from your changes
+
+A large part of AI referral growth is the platform itself growing. arXiv 2606.04362
+(single study): ChatGPT referrals grew 5.7x across the whole site from January to May, and even unchanged
+pages grew 3.5x. After removing platform growth, the estimated effect of the changes was
+about 1.82x (95% CI 1.31–2.54), but the placebo test gave p=0.16, so treat it as "some
+sign," not as proven.
+Conflict of interest and limits: the author operates the studied site (glasp.co), and
+the pre-trend was already rising significantly. Also, Google organic clicks fell about
+25% on the changed pages and about 20% site-wide; the author judged this consistent with
+the trend, so it was not "no decline."
+
+- [ ] Before you change anything, pick a set of pages on the **same domain that you will
+      not touch** as a control group, and record their baseline with the pages you will change
+- [ ] At re-measurement, compare the changed pages against the control group; do not just
+      point to a site-wide rise
+- [ ] State in the report which pages are the control group. With no control group, write
+      "rose over the same period," not "the change worked"
+- [ ] Word conclusions as "some sign" or "not proven"; do not write guarantees
+
+## 2-2. Multi-turn follow-up measurement — a single turn may undercount the effect
+
+arXiv 2609.40069 (theoretical model, not yet confirmed by field tests): in multi-turn
+conversations, a source cited early is more likely to be cited again later. Measuring
+single-turn answers may undercount the value of being cited.
+
+- [ ] For each target question, ask the single-turn question and also run a multi-turn conversation of 3–5 turns in total (including the first)
+      (for example, "what about the price" and "any reviews")
+- [ ] Record cited-or-not (O/X) per turn, and note which turn it was
+- [ ] Sample the same question repeatedly: AI answers differ each time, so ask each
+      question several times before you record a result; do not rely on one run
+- [ ] Report single-turn and multi-turn results separately
+
 ## 3. The stale data trap
 
 > **Stale data passes every lower bound.**
